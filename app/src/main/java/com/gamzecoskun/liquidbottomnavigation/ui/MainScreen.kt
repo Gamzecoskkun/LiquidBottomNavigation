@@ -9,13 +9,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,7 +60,29 @@ fun CustomBottomNavigation() {
     }
 }
 
+@Composable
+fun AnimatedFab(
+    modifier: Modifier,
+    icon: ImageVector? = null,
+    opacity: Float = 1f,
+    onClick: () -> Unit = {}
+) {
+    FloatingActionButton(
+        onClick = onClick,
+        elevation = FloatingActionButtonDefaults.elevation(0.dp,0.dp,0.dp,0.dp),
+       modifier = modifier.scale(1.25f)
+        ) {
+        icon?.let{
+            Icon(
+                imageVector = it,
+                contentDescription = null,
+                tint=Color.White.copy(alpha = opacity)
+            )
 
+        }
+
+    }
+}
 
 
 @Composable
